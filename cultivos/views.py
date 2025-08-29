@@ -25,5 +25,53 @@ def listar_cultivos(request):
     }
     return render(request, 'cultivos/lista_cultivos.html', contexto)
 
-def detalle_cultivo(request):
-    pass
+def detalle_cultivo(request, nombre):
+    cultivos = {
+        'Tomate': {
+            'tipo':'fruto',
+            'descripcion':'Requiere sol directo y riego moderado, muy sensible al frío',
+            'siembra':'Agosto - Octubre',
+            'cosecha':'Noviembre - Enero'
+        },
+        'Lechuga': {
+            'tipo':'hoja',
+            'descripcion':'Preferentemente sombra y suelo humedo',
+            'siembra':'Marzo - Mayo',
+            'cosecha':'60 días depués de sembrado'
+        },
+        'Albahaca': {
+            'tipo':'hoja',
+            'descripcion':'Prefiere climas cálidos, no tolerancia a las heladas',
+            'siembra':'Septiembre - Noviembre',
+            'cosecha':'40 días después de la siembra'
+        },
+        'Zanahoria': {
+            'tipo':'raiz',
+            'descripcion':'Requiere sol directo y riego moderado, muy sensible al frío',
+            'siembra':'Agosto - Octubre',
+            'cosecha':'Noviembre - Enero'
+        },
+        'Cilantro': {
+            'tipo':'hoja',
+            'descripcion':'Requiere sol directo y riego moderado, muy sensible al frío',
+            'siembra':'Agosto - Octubre',
+            'cosecha':'Noviembre - Enero'
+        },
+        'Pimiento': {
+            'tipo':'fruto',
+            'descripcion':'Requiere sol directo y riego moderado, muy sensible al frío',
+            'siembra':'Agosto - Octubre',
+            'cosecha':'Noviembre - Enero'
+        },
+    }
+    cultivos = cultivos.get(nombre)
+    if not cultivos:
+        return render(request, 'cultivos/no_encontrado.html', {'nombre':nombre})
+    contexto = {
+        'nombre':nombre,
+        'tipo':cultivos['tipo'],
+        'descripcion':cultivos['descripcion'],
+        'siembra':cultivos['siembra'],
+        'cosecha':cultivos['cosecha'],
+    }
+    return render(request, 'cultivos/detalle.html', contexto)
