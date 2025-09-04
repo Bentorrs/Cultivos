@@ -75,3 +75,43 @@ def detalle_cultivo(request, nombre):
         'cosecha':cultivos['cosecha'],
     }
     return render(request, 'cultivos/detalle.html', contexto)
+
+def recomendar_cultivos(request, estacion):
+    estaciones = {
+        'Verano': {
+            'cultivo': 'Albahaca',
+            'recomendacion': 'ejemplo'
+        },
+        'Otonno': {
+            'cultivo': 'Zanahora',
+            'recomendacion': 'ejemplo'
+        },
+        'Invierno': {
+            'cultivo': 'Pimiento',
+            'recomendacion': 'ejemplo'
+        },
+        'Primavera': {
+            'cultivo': 'Tomate',
+            'recomendacion': 'ejemplo'
+        },
+    }
+
+    
+    estaciones = estaciones.get(estacion)
+    if not estaciones:
+        return render(request, 'cultivos/no_encontrado.html', {'estaciones':estacion})
+    contexto = {
+        'estacion':estacion,
+        'cultivo':estaciones['cultivo'],
+        'recomendacion':estaciones['recomendacion']
+    }
+    return render(request, 'cultivos/recomendar.html', contexto)
+
+def consejo_diario():
+    pass
+
+def evaluar_riego():
+    pass
+
+def calculadora_espacio():
+    pass

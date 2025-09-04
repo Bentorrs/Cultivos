@@ -50,4 +50,23 @@
         {% endfor %}
     </tbody>
     </table>
+    <h2>Filtro de estaciones</h2>
+    <form class="mb-2" method="get">
+        <div class="row g-2">
+            <div class= "col-md-4">
+                <select name="tipo" class="form-select">
+                    <option value="">--Estaciones--</option>
+                    <option value="Verano" {% if request.GET.estacion == "Verano" %}selected{% endif %}>Verano</option>
+                    <option value="Otonno" {% if request.GET.estacion == "Otonno" %}selected{% endif %}>Otonno</option>
+                    <option value="Invierno" {% if request.GET.estacion == "Invierno" %}selected{% endif %}>Invierno</option>
+                    <option value="Primavera" {% if request.GET.estacion == "Primavera" %}selected{% endif %}>Primavera</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'recomendar' estaciones.estacion %}" class="btn btn-primary w-100">
+                    Buscar
+                </a>
+            </div>
+        </div>
+    </form>
 {% endblock content %}
